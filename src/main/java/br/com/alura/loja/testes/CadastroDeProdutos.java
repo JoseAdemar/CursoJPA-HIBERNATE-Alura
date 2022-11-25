@@ -21,7 +21,7 @@ public class CadastroDeProdutos {
 		em.getTransaction().begin();
 
 		ProdutoDAO produtoDao = new ProdutoDAO(em);
-		CategoriaDAO categoriaDAO = new CategoriaDAO(em);
+		CategoriaDAO categoriaDAO = new CategoriaDAO(em); 
 
 		categoriaDAO.cadastrar(celulares);
 		produtoDao.cadastrar(celular);
