@@ -1,8 +1,8 @@
 package br.com.alura.loja.dao;
 
-import javax.persistence.EntityManager;
-
 import br.com.alura.loja.modelo.Produto;
+
+import javax.persistence.EntityManager;
 
 public class ProdutoDAO {
 
@@ -14,6 +14,7 @@ public class ProdutoDAO {
 	}
 	
 	public void cadastrar(Produto produto) {
+
 		this.em.persist(produto);
 	}
 

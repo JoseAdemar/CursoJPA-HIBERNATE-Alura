@@ -1,15 +1,8 @@
 package br.com.alura.loja.modelo;
 
+import javax.persistence.*;
 import java.math.BigDecimal;
 import java.time.LocalDate;
-
-import javax.persistence.Entity;
-import javax.persistence.EnumType;
-import javax.persistence.Enumerated;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
-import javax.persistence.Table;
 
 @Entity
 @Table(name = "produtos")
@@ -26,8 +19,7 @@ public class Produto {
 	private BigDecimal preco ;
 	
 	private LocalDate localDate = LocalDate.now();
-	
-	@Enumerated(EnumType.STRING)
+    @ManyToOne
 	private Categoria categoria;
 	
 	public Produto() {
