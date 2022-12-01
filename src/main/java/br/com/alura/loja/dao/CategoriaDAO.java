@@ -18,4 +18,8 @@ public class CategoriaDAO {
 		this.em.persist(categoria);
 	}
 
+	public void atualizar(Categoria categoria){
+		this.em.merge(categoria);
+	}
+
 }
