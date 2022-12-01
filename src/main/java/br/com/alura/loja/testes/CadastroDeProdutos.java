@@ -16,12 +16,18 @@ public class CadastroDeProdutos {
 				  new BigDecimal("800"), celulares);
 	
 		EntityManager em = JPAUtil.getEntityManager();
-
-		
 		em.getTransaction().begin();
+		em.persist(celulares);
+		celulares.setNome("XPTO");
+		em.flush();
+		em.clear();
+
+		celulares = em.merge(celulares);
+		celulares.setNome("1234");
+		em.flush();
 
 		ProdutoDAO produtoDao = new ProdutoDAO(em);
-		CategoriaDAO categoriaDAO = new CategoriaDAO(em); 
+		CategoriaDAO categoriaDAO = new CategoriaDAO(em);
 
 		categoriaDAO.cadastrar(celulares);
 		produtoDao.cadastrar(celular);
