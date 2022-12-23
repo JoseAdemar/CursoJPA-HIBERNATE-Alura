@@ -8,31 +8,47 @@ import br.com.alura.loja.util.JPAUtil;
 
 import javax.persistence.EntityManager;
 import java.math.BigDecimal;
+import java.util.List;
 
 public class CadastroDeProdutos {
-	public static void main(String[] args) {
-        Categoria celulares = new Categoria("CELULAR");
-		Produto celular = new Produto("Xiomi Redmi", "Muito Legal",
-				  new BigDecimal("800"), celulares);
-	
-		EntityManager em = JPAUtil.getEntityManager();
-		em.getTransaction().begin();
-		em.persist(celulares);
-		celulares.setNome("XPTO");
-		em.flush();
-		em.clear();
+    public static void main(String[] args) {
+        //cadastroDeProdutos();
+        EntityManager em = JPAUtil.getEntityManager();
+        ProdutoDAO pd = new ProdutoDAO(em);
+        Produto p = pd.buscarPorId(1L);
+        System.out.println(p.getPreco());
 
-		celulares = em.merge(celulares);
-		celulares.setNome("1234");
-		em.flush();
+        List<Produto> todos = pd.buscarTodos();
+        todos.forEach(p2 -> System.out.println(p.getPreco()));
 
-		ProdutoDAO produtoDao = new ProdutoDAO(em);
-		CategoriaDAO categoriaDAO = new CategoriaDAO(em);
+}
 
-		categoriaDAO.cadastrar(celulares);
-		produtoDao.cadastrar(celular);
-
-		em.getTransaction().commit();
-		em.close();
-	}
+//	private static void cadastroDeProdutos() {
+//		Categoria celulares = new Categoria("CELULAR");
+//		Produto celular = new Produto("Xiomi Redmi", "Muito Legal",
+//				  new BigDecimal("800"), celulares);
+//
+//		EntityManager em = JPAUtil.getEntityManager();
+//		em.getTransaction().begin();
+//		em.persist(celulares);
+////		celulares.setNome("XPTO");
+////		em.flush();
+////		em.clear();
+////
+////		celulares = em.merge(celulares);
+////		celulares.setNome("1234");
+////		em.flush();
+////
+////		em.remove(celulares);
+////		em.flush();
+//
+////		ProdutoDAO produtoDao = new ProdutoDAO(em);
+////		CategoriaDAO categoriaDAO = new CategoriaDAO(em);
+////
+////		categoriaDAO.cadastrar(celulares);
+////		produtoDao.cadastrar(celular);
+////
+//		em.getTransaction().commit();
+//		em.close();
+//	}
 }
