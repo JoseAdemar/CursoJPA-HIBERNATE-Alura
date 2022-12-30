@@ -18,8 +18,10 @@ public class CadastroDeProdutos {
         Produto p = pd.buscarPorId(1L);
         System.out.println(p.getPreco());
 
-        List<Produto> todos = pd.buscarTodos();
-        todos.forEach(p2 -> System.out.println(p.getPreco()));
+        //List<Produto> todos = pd.buscarTodos();
+       //List<Produto> buscarPornome = pd.buscarPorNome("Xiomi Redmi");
+        List<Produto> buscarPorCategoria = pd.buscarPorCategoria("CELULAR");
+        buscarPorCategoria.forEach(p2 -> System.out.println(p.getCategoria().getNome()));
 
 }
 
