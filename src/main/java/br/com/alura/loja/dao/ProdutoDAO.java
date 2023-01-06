@@ -3,6 +3,7 @@ package br.com.alura.loja.dao;
 import br.com.alura.loja.modelo.Produto;
 
 import javax.persistence.EntityManager;
+import java.math.BigDecimal;
 import java.util.List;
 
 public class ProdutoDAO {
@@ -38,6 +39,14 @@ public class ProdutoDAO {
 		return  em.createQuery(jpql,Produto.class)
 				.setParameter("nome", nome)
 				.getResultList();
+	}
+
+	// retorna um único atributo da entidade
+	public BigDecimal buscarPrecoDoProduto(String nome){
+		String jpql = "SELECT p.preco FROM Produto p where p.nome = :nome ";
+		return  em.createQuery(jpql, BigDecimal.class)
+				.setParameter("nome", nome)
+				.getSingleResult();
 	}
 
 }
